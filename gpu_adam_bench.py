@@ -23,10 +23,10 @@ class GPUAdam_Benchmark:
         self.device = device
 
         # Initialize tensors
-        self.param_cpu = torch.zeros((param_size,), dtype=dtype, device="cpu")
-        self.grad_cpu = torch.randn((param_size,), dtype=dtype, device="cpu")
-        self.exp_avg_cpu = torch.zeros((param_size,), dtype=dtype, device="cpu")
-        self.exp_avg_sq_cpu = torch.zeros((param_size,), dtype=dtype, device="cpu")
+        self.param_cpu = torch.zeros((param_size,), dtype=dtype, device="cpu", pin_memory=True)
+        self.grad_cpu = torch.randn((param_size,), dtype=dtype, device="cpu", pin_memory=True)
+        self.exp_avg_cpu = torch.zeros((param_size,), dtype=dtype, device="cpu", pin_memory=True)
+        self.exp_avg_sq_cpu = torch.zeros((param_size,), dtype=dtype, device="cpu", pin_memory=True)
         self.param = torch.empty((param_size,), dtype=dtype, device=self.device)
         self.grad = torch.empty((param_size,), dtype=dtype, device=self.device)
         self.exp_avg = torch.empty((param_size,), dtype=dtype, device=self.device)
